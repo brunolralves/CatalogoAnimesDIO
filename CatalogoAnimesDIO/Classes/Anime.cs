@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CatalogoAnimesDIO.Classes
 {
-    class Anime : BaseEntity
+    public class Anime : BaseEntity
     {
         private Gender Gender { get; set; }
         private string Title {get; set; }

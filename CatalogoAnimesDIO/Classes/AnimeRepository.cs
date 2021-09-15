@@ -10,7 +10,7 @@ namespace CatalogoAnimesDIO.Classes
     public class AnimeRepository : IRepository<Anime>
     {
 
-        private List<Anime> listAnimes = new List<Anime>();
+        private List<Anime> listAnimes = new();
 
         public void Delete(int id)
         {
