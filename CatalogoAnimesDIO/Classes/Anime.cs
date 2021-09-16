@@ -31,9 +31,10 @@ namespace CatalogoAnimesDIO.Classes
         {
             string returnString = " ";
             returnString += "Gênero: " + this.Gender + Environment.NewLine;
-            returnString += "Titulo: " + this.Title + Environment.NewLine;
-            returnString += "Descrição: " + this.Description + Environment.NewLine;
-            returnString += "Ano de lançamento: " + this.Year;
+            returnString += " Titulo: " + this.Title + Environment.NewLine;
+            returnString += " Descrição: " + this.Description + Environment.NewLine;
+            returnString += " Ano de lançamento: " + this.Year;
+            returnString += " Excluido: " + this.Deleted;
            
 
             return returnString;

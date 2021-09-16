@@ -26,13 +26,13 @@ namespace CatalogoAnimesDIO
                         InsertAnime();
                         break;
                     case "3":
-                        // UpdateAnime();
+                        UpdateAnime();
                         break;
                     case "4":
-                        //DeleteAnime();
+                        DeleteAnime();
                         break;
                     case "5":
-                        //ShowAnime();
+                        ShowAnime();
                         break;
                     case "C":
                         Console.Clear();
@@ -45,6 +45,54 @@ namespace CatalogoAnimesDIO
                         break;
                 }
             } while (userOption.ToUpper() != "X");
+        }
+
+        private static void ShowAnime()
+        {
+            Console.WriteLine("Informe o ID do anime");
+            int indexAnime = int.Parse(Console.ReadLine());
+
+            var anime = repository.GetByID(indexAnime);
+            Console.WriteLine(anime);
+        }
+
+        private static void DeleteAnime()
+        {
+            Console.WriteLine("Informe o ID do anime!");
+            int indexAnime = int.Parse(Console.ReadLine());
+
+            repository.Delete(indexAnime);
+        }
+
+        private static void UpdateAnime()
+        {
+
+            Console.WriteLine("Digite o id do Anime: ");
+            int indexAnime = int.Parse(Console.ReadLine());
+            foreach (int i in System.Enum.GetValues(typeof(Gender)))
+            {
+                Console.WriteLine($"{i} - {System.Enum.GetName(typeof(Gender), i)} ");
+            }
+
+            Console.Write("Digite o gênero entre as opções acima: ");
+            int inputGender = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o Título do Anime: ");
+            string inputTitle = Console.ReadLine();
+
+            Console.Write("Digite o Ano de Início da Anime: ");
+            int inputYear = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite a Descrição do Anime: ");
+            string inputDescription = Console.ReadLine();
+
+            Anime updateAnime = new Anime(id: indexAnime,
+                                        gender: (Gender)inputGender,
+                                        title: inputTitle,
+                                        year: inputYear,
+                                        description: inputDescription);
+
+            repository.Update(indexAnime,updateAnime);
         }
 
         private static void InsertAnime()
