@@ -41,7 +41,7 @@ namespace CatalogoAnimesDIO
                         Console.WriteLine("Volte sempre!!");
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        Console.WriteLine("Opção inválida! Tente Novamente! ");
                         break;
                 }
             } while (userOption.ToUpper() != "X");
@@ -53,6 +53,8 @@ namespace CatalogoAnimesDIO
             int indexAnime = int.Parse(Console.ReadLine());
 
             var anime = repository.GetByID(indexAnime);
+
+            
             Console.WriteLine(anime);
         }
 
@@ -142,7 +144,16 @@ namespace CatalogoAnimesDIO
 
             foreach (var anime in list)
             {
-                Console.WriteLine($"#ID {anime.GetId()}: - {anime.GetTitle()}");
+                var deleted = anime.GetDeleted();
+                if (!deleted)
+                {
+                    Console.WriteLine($"#ID {anime.GetId()}: - {anime.GetTitle()}");
+                }
+                else
+                {
+                    Console.WriteLine($"#ID {anime.GetId()}: - Registro Excluido");
+                }
+                
             }
 
 

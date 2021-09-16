@@ -33,7 +33,7 @@ namespace CatalogoAnimesDIO.Classes
             returnString += "Gênero: " + this.Gender + Environment.NewLine;
             returnString += " Titulo: " + this.Title + Environment.NewLine;
             returnString += " Descrição: " + this.Description + Environment.NewLine;
-            returnString += " Ano de lançamento: " + this.Year;
+            returnString += " Ano de lançamento: " + this.Year + Environment.NewLine;
             returnString += " Excluido: " + this.Deleted;
            
 
@@ -50,6 +50,11 @@ namespace CatalogoAnimesDIO.Classes
         public int GetId()
         {
             return this.Id;
+        }
+
+        public bool GetDeleted()
+        {
+            return this.Deleted;
         }
 
         public void Delete()

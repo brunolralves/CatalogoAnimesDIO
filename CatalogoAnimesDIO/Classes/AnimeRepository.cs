@@ -22,6 +22,8 @@ namespace CatalogoAnimesDIO.Classes
             return listAnimes[id] ;
         }
 
+
+
         public void Insert(Anime anime)
         {
             listAnimes.Add(anime);
