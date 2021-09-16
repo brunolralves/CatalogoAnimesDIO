@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CatalogoAnimesDIO.Enum
+﻿namespace CatalogoAnimesDIO.Enum
 {
-    public enum Gender : int
+    public enum Gender 
     {
         Shounen = 1,
         Seinen = 2,

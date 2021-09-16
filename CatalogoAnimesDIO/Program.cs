@@ -1,5 +1,8 @@
 ﻿using CatalogoAnimesDIO.Classes;
+using CatalogoAnimesDIO.Enum;
+using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace CatalogoAnimesDIO
 {
@@ -9,10 +12,11 @@ namespace CatalogoAnimesDIO
 
         static void Main(string[] args)
         {
-            string userOption = GetUserOption();
 
-            while (userOption.ToUpper() != "X")
+            string userOption = " ";
+            do
             {
+                userOption = GetUserOption();
                 switch (userOption)
                 {
                     case "1":
@@ -22,7 +26,7 @@ namespace CatalogoAnimesDIO
                         InsertAnime();
                         break;
                     case "3":
-                       // UpdateAnime();
+                        // UpdateAnime();
                         break;
                     case "4":
                         //DeleteAnime();
@@ -30,16 +34,48 @@ namespace CatalogoAnimesDIO
                     case "5":
                         //ShowAnime();
                         break;
-
+                    case "C":
+                        Console.Clear();
+                        break;
+                    case "X":
+                        Console.WriteLine("Volte sempre!!");
+                        break;
                     default:
+                        throw new ArgumentOutOfRangeException();
                         break;
                 }
-            }
+            } while (userOption.ToUpper() != "X");
         }
 
         private static void InsertAnime()
         {
-            
+            Console.WriteLine("Inserir novo Anime");
+
+            foreach (int i in System.Enum.GetValues(typeof(Gender)))
+            {
+                Console.WriteLine($"{i} - {System.Enum.GetName(typeof(Gender), i)} ");
+            }
+
+            Console.Write("Digite o gênero entre as opções acima: ");
+            int inputGender = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o Título do Anime: ");
+            string inputTitle = Console.ReadLine();
+
+            Console.Write("Digite o Ano de Início da Anime: ");
+            int inputYear = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite a Descrição do Anime: ");
+            string inputDescription = Console.ReadLine();
+
+            Anime newAnime = new Anime(id: repository.NextId(),
+                                        gender: (Gender)inputGender,
+                                        title: inputTitle,
+                                        year: inputYear,
+                                        description: inputDescription);
+
+            repository.Insert(newAnime);
+
         }
 
         private static void GetAnimes()
@@ -50,13 +86,19 @@ namespace CatalogoAnimesDIO
             if (list.Count == 0)
             {
                 Console.WriteLine("Nenhum Anime cadastrado.");
+
                 return;
+
             }
+
 
             foreach (var anime in list)
             {
                 Console.WriteLine($"#ID {anime.GetId()}: - {anime.GetTitle()}");
             }
+
+
+
         }
 
         private static string GetUserOption()
